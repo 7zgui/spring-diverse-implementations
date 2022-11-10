@@ -1,5 +1,6 @@
 package com.ecommerce.micrommerce.web.controller;
 
+import com.ecommerce.micrommerce.model.Product;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +17,10 @@ public class ProductController {
         return "Un exemple de produit";
     }
 
-    @GetMapping("/Produits/{id}")
-    public String afficherUnProduit(@PathVariable int id) {
-        return "Vous avez demandé un produit avec l'id  " + id;
+    //Récupérer un produit par son Id
+    @GetMapping(value = "/Produits/{id}")
+    public Product afficherUnProduit(@PathVariable int id) {
+        Product product ;
+        return product= new Product(id, new String("Aspirateur"), 100);
     }
 }
