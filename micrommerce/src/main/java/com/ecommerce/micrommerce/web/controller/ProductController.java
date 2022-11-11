@@ -1,9 +1,10 @@
 package com.ecommerce.micrommerce.web.controller;
 
 import com.ecommerce.micrommerce.model.Product;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import com.ecommerce.micrommerce.web.dao.ProductDao;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author Mohamed ouokki on 11/8/22
@@ -12,15 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 
-    @GetMapping("/Produits")
-    public String listeProduits() {
-        return "Un exemple de produit";
+    private final ProductDao productDao;
+
+    public ProductController(ProductDao productDao){
+        this.productDao = productDao;
     }
 
-    //Récupérer un produit par son Id
+    @GetMapping("/Produits")
+    public List<Product> listeProduits() {
+        return productDao.findAll();
+    }
+
     @GetMapping(value = "/Produits/{id}")
     public Product afficherUnProduit(@PathVariable int id) {
-        Product product ;
-        return product= new Product(id, new String("Aspirateur"), 100);
+        return productDao.findById(id);
+    }
+
+    @PostMapping(value = "/Produits")
+    public void ajouterProduit(@RequestBody Product product) {
+        productDao.save(product);
     }
 }

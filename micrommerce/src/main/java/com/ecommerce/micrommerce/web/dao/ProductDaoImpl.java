@@ -20,7 +20,7 @@ public class ProductDaoImpl implements ProductDao{
         products.add(new Product(2, "Aspirateur Robot", 500));
         products.add(new Product(3, "Table de Ping Pong", 750));
     }
-    
+
     @Override
     public List<Product> findAll() {
 
