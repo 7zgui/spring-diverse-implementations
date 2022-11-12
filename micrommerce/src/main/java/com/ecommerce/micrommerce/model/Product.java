@@ -9,14 +9,16 @@ public class Product {
     private int id;
     private String nom;
     private int prix;
+    private int prixAchats;
 
     public Product() {
     }
 
-    public Product(int id, String nom, int prix) {
+    public Product(int id, String nom, int prix,int prixAchats) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
+        this.prixAchats=prixAchats;
     }
 
     public int getId() {
@@ -42,4 +44,24 @@ public class Product {
     public void setPrix(int prix) {
         this.prix = prix;
     }
+
+    public int getPrixAchats() {
+        return prixAchats;
+    }
+
+    public void setPrixAchats(int prixAchats) {
+        this.prixAchats = prixAchats;
+    }
+
+    @Override
+    public String toString() {
+
+        return "Product{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prix=" + prix +
+                '}';
+    }
+
+
 }

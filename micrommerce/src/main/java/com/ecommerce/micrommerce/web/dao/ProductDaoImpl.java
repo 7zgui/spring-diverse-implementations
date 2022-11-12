@@ -16,9 +16,9 @@ public class ProductDaoImpl implements ProductDao{
     public static List<Product> products = new ArrayList<>();
 
     static {
-        products.add(new Product(1, "Ordinateur portable", 350));
-        products.add(new Product(2, "Aspirateur Robot", 500));
-        products.add(new Product(3, "Table de Ping Pong", 750));
+        products.add(new Product(1, "Ordinateur portable", 350,220));
+        products.add(new Product(2, "Aspirateur Robot", 500,300));
+        products.add(new Product(3, "Table de Ping Pong", 750,190));
     }
 
     @Override
