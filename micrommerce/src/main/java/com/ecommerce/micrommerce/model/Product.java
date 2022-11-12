@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 /**
  * @author Mohamed ouokki on 11/10/22
@@ -16,8 +18,11 @@ public class Product {
     @Id
     //@GeneratedValue
     private int id;
+    @Size(min = 3, max = 25)
     private String nom;
+    @Min(value = 1)
     private int prix;
+    @Min(value = 1)
     private int prixAchats;
 
     public Product() {
