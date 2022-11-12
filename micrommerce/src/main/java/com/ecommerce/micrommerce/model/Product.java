@@ -1,9 +1,12 @@
 package com.ecommerce.micrommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+
 /**
  * @author Mohamed ouokki on 11/10/22
  * @project micrommerce
  */
+@JsonFilter(value = "productDynamicFilter")
 public class Product {
 
     private int id;
