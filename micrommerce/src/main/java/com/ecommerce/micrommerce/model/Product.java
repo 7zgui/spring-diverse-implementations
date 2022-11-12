@@ -11,7 +11,7 @@ import javax.persistence.Id;
  * @project micrommerce
  */
 @Entity
-//@JsonFilter(value = "productDynamicFilter")
+@JsonFilter(value = "productDynamicFilter")
 public class Product {
     @Id
     //@GeneratedValue

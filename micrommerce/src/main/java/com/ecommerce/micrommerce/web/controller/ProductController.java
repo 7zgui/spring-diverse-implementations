@@ -29,32 +29,14 @@ public class ProductController {
     }
 
     @GetMapping("/Produits")
-    public /*MappingJacksonValue*/ List<Product> listeProduits() {
-        List<Product> produits = productDao.findAll();
-        /*SimpleBeanPropertyFilter monFiltre = SimpleBeanPropertyFilter.serializeAllExcept("prixAchats","id");
-        FilterProvider listDeNosFiltres = new SimpleFilterProvider().addFilter("productDynamicFilter",monFiltre);
-        MappingJacksonValue produitsFiltres=new MappingJacksonValue(produits);
-        produitsFiltres.setFilters(listDeNosFiltres);
-        return produitsFiltres;*/
-        return produits;
+    public  MappingJacksonValue listeProduits() {
+        Iterable<Product> products=productDao.findAll();
+        SimpleBeanPropertyFilter myFilter= SimpleBeanPropertyFilter.serializeAllExcept("prixAchats");
+        FilterProvider filters = new SimpleFilterProvider().addFilter("productDynamicFilter",myFilter);
+        MappingJacksonValue filteredProducts = new MappingJacksonValue(products);
+        filteredProducts.setFilters(filters);
+        return filteredProducts;
     }
 
-    @GetMapping(value = "/Produits/{id}")
-    public Product afficherUnProduit(@PathVariable int id) {
-        return productDao.findById(id);
-    }
 
-    @PostMapping(value = "/Produits")
-    public ResponseEntity<Product> ajouterProduit(@RequestBody Product product) {
-        Product productAdded = productDao.save(product);
-        if(Objects.isNull(productAdded)){
-            return ResponseEntity.noContent().build();
-        }
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(productAdded.getId())
-                .toUri();
-        return ResponseEntity.created(location).build();
-    }
 }
