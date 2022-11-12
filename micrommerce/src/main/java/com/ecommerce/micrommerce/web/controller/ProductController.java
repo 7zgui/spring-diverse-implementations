@@ -67,11 +67,16 @@ public class ProductController {
 
     @PostMapping(value = "/Produit")
     public ResponseEntity<Product> saveProduct(@Valid @RequestBody Product product){
-        Product productCreated=productDao.save(product);
-        if(productCreated !=null){
-            return new ResponseEntity<Product>(HttpStatus.CREATED);
+        Product productAdded = productDao.save(product);
+        if(Objects.isNull(productAdded)){
+            return ResponseEntity.noContent().build();
         }
-        return null;
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(productAdded.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
     }
 
 
