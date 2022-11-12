@@ -2,13 +2,19 @@ package com.ecommerce.micrommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * @author Mohamed ouokki on 11/10/22
  * @project micrommerce
  */
-@JsonFilter(value = "productDynamicFilter")
+@Entity
+//@JsonFilter(value = "productDynamicFilter")
 public class Product {
-
+    @Id
+    //@GeneratedValue
     private int id;
     private String nom;
     private int prix;

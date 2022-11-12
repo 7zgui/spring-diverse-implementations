@@ -29,13 +29,14 @@ public class ProductController {
     }
 
     @GetMapping("/Produits")
-    public MappingJacksonValue listeProduits() {
+    public /*MappingJacksonValue*/ List<Product> listeProduits() {
         List<Product> produits = productDao.findAll();
-        SimpleBeanPropertyFilter monFiltre = SimpleBeanPropertyFilter.serializeAllExcept("prixAchats","id");
+        /*SimpleBeanPropertyFilter monFiltre = SimpleBeanPropertyFilter.serializeAllExcept("prixAchats","id");
         FilterProvider listDeNosFiltres = new SimpleFilterProvider().addFilter("productDynamicFilter",monFiltre);
         MappingJacksonValue produitsFiltres=new MappingJacksonValue(produits);
         produitsFiltres.setFilters(listDeNosFiltres);
-        return produitsFiltres;
+        return produitsFiltres;*/
+        return produits;
     }
 
     @GetMapping(value = "/Produits/{id}")
