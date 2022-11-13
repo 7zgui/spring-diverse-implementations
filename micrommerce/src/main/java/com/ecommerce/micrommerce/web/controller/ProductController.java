@@ -6,6 +6,8 @@ import com.ecommerce.micrommerce.web.exceptions.ProduitIntrouvableException;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,7 @@ import java.util.logging.Filter;
  * @author Mohamed ouokki on 11/8/22
  * @project micrommerce
  */
+@Api("API pour les opérations CRUD sur les produits.")
 @RestController
 public class ProductController {
 
@@ -42,6 +45,7 @@ public class ProductController {
         return filteredProducts;
     }
 
+    @ApiOperation(value = "Récupère un produit grâce à son ID à condition que celui-ci soit en stock!")
     @GetMapping(value = "/Produits/{id}")
     public MappingJacksonValue afficherUnProduit(@PathVariable int id)
     {
