@@ -14,8 +14,11 @@ import java.util.Optional;
 @RestController
 public class ProductController {
 
-    @Autowired
-    ProductDao productDao;
+    final ProductDao productDao;
+
+    public ProductController(ProductDao productDao) {
+        this.productDao = productDao;
+    }
 
     // Affiche la liste de tous les produits disponibles
     @GetMapping(value = "/Produits")
